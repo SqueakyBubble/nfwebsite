@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photo Gallery</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+    .photo { text-align: center; }
+    .photo img { max-width: 100%; height: auto; border-radius: 8px; }
+    .caption { margin-top: 8px; font-size: 14px; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>My Gallery</h1>
+  <div class="gallery">
+    {{ range sort .Site.Data.gallery "date" "desc"}}
+      <div class="photo">
+        <img src="/photos/{{ .file }}" alt="{{ .caption }}" loading="lazy">
+        <div class="caption">{{ .caption }}</div>
+      </div>
+    {{ end }}
+  </div>
+</body>
+</html>
